@@ -1,0 +1,124 @@
+.header nav ul{
+    display: flex; /*vai ajustar os links do menu em linha*/
+}
+
+.header nav ul li a{
+    font-size: 2rem; /*20px*/
+    font-weight: 500;
+    padding: 10px 30px; /*10px para cima e para baixo, 30px dos lados*/
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.header nav ul li a:hover{
+    color: #fff;
+    background-color: coral;
+}
+
+
+/* RESPONSIVO */
+.header .menu{
+    display: none; /*display none para esconder o menu por enquanto*/
+    width: 60px;
+    height: 60px;
+    align-self: flex-end; /*essa é uma propriedade de flex-item, para deixar no final do fluxo (lado direito)
+                            foi utilizada para o menu hamburguer ir para o lado direito da tela ao ser clicado*/
+}
+
+/* Complementando a ida do menu ao lado direito */
+.header nav label{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Esse .hamburguer é o span definido na div menu, ele é a linha do meio do menu hamburger */
+.header .hamburguer{
+    background-color: #000;
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 2px;
+    top: 29px;
+    left: 15px;
+    transition: 0.5s ease-in-out;
+}
+
+/* As linhas antes e depois da linha do span definido */
+/* Eles vão ficar absolutamente posicionados em relação ao span do meio */
+
+.header .hamburguer:before,
+.header .hamburguer:after{
+    background-color: #000;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: 0.2s ease-in-out;
+}
+
+.header .hamburguer:before{
+    top: -10px; /*-10px para ele subir em relação ao span do meio, isso para dar o efeito de um embaixo do outro*/
+}
+
+.header .hamburguer:after{
+    bottom: -10px;
+}
+
+/* Para esconder a caixinha do checkbox */
+.header input{
+    display: none;
+}
+
+
+/* ANIMAÇÃO DO HAMBURGUER */
+
+/* Quando o input estiver checked vamos no laber e fazemos a transformação para rotacionar. */
+.header input:checked ~ label .hamburguer{
+    transform: rotate(45deg);
+}
+
+.header input:checked ~ label .hamburguer:before{
+    transform:rotate(90deg);
+    top: 0;
+}
+
+.header input:checked ~ label .hamburguer:after{
+    transform: rotate(90deg);
+    bottom: 0;
+}
+
+/* Para o hamburger aparecer e o menu desktop sumir*/
+@media (max-width: 900px){
+    .header .menu{
+        display: block; /*ele aparece*/
+    }
+
+    .header nav ul{
+        display: none; /*menu desktop some*/
+    }
+     
+    /*quando o input for clicado, o menu deve aparecer com os links, então:*/
+    .header input:checked ~ ul{
+        display: block;
+    }
+    
+    .header nav{
+        position: absolute;
+        top: 8px;
+        right: 20px;
+        z-index: 1; /*essa propriedade é o eixo z, usado para colocar o menu para frente ou para trás*/
+    }
+
+    .header nav ul{
+        width: 200px;
+        background-color: #fff;
+        padding: 20px;
+    }
+
+    .header nav ul a{
+        text-align: center;
+        padding: 20px;
+        display: block;
+    }
+}

@@ -1,0 +1,305 @@
+html{
+    font-size: 62.5%;
+}
+
+body{
+    display: grid;
+    grid-template-areas: "header header header header"
+                         "hero hero hero hero"
+                         "about about about about"
+                         "services services services services"
+                         "projects projects projects projects"
+                         "footer footer footer footer";
+    grid-template-columns: repeat(4, 1fr);
+    font-size: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+
+/*HEADER */
+.header{
+    grid-area: header;
+    background-color: #fff;
+}
+
+.header .header-container{
+    display: flex;
+    padding: 20px 40px; /*20px para cima e para baixo, 40px de um lado e do outro*/
+    justify-content: space-between; /*espaços entre os links do menu*/
+    align-items: center;
+    min-height: 75px;
+}
+
+.header h1{
+    font-size: 3rem; /*3rem = 30px*/
+    font-weight: 700;
+    transition: 0.3s; /*transição para suavizar o hover definido abaixo*/
+}
+
+.header a:hover h1{
+    color: coral;
+}
+
+
+/*PAINEL HERO */
+.hero{
+    grid-area: hero;
+    height: 89vh;
+    background: url('../images/lemons.jpg') center center no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* As unidades vh e vw significam viewport, sendo a primeira para altura e a segunda para largura. Isso significa que elas utilizam o tamanho total da viewport (tamanho do nosso dispositivo), ou seja, uma altura de 100vh corresponde a 100% da página total, do nosso corpo do documento (body). */
+/* background-size: cover; faz com que a imagem se adeque ao tamanho da div */
+
+/* display: flex;
+justify-content: center;
+align-items: center;
+usados para alinhar vertical e horizontalmente */
+
+
+.hero h2{
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 4rem;
+}
+
+.hero:after{
+    content: url('../images/seta_preta.png');
+    position: absolute;
+    height: 35px;
+    bottom: 40px;
+    animation: downarrow 0.6s infinite alternate ease-in-out;  /*downarrow é o nome da animação, definimos o tempo, a animação infinita e alternando para cima e para baixo*/
+}
+
+/* position absolute fez a seta ir lá embaixo, como no final da div */
+
+/* CRIANDO A ANIMAÇÃO DA SETA */
+@-webkit-keyframes downarrow{
+    0% {-webkit-transform: translateY(0); opacity: 0.4;} 
+    /*frame inicial começando em zero, ele começa parado*/
+    
+    100% {-webkit-transform: translateY(0.4em);
+    opacity: 0.9;} 
+    /*aqui estamos dizendo quando queremos que ele se movimente, como se fosse uma velocidadde*/
+}
+
+/* AJUSTANDO A SETA E H2 NO MOBILE */
+@media (max-width: 425px){
+    .hero{
+        height: 60vh;
+    }
+
+    .hero h2{
+        font-size: 2.5rem;
+    }
+}
+
+/*ABOUT */
+.about{
+    grid-area: about;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /*uma fração para cada uma das colunas da seção*/
+    background-color: #fff;
+    max-width: var(--max-width-size); /*usamos nossa variável para que quando a tela for maior que 1920px a a seção do sobre fique centralizada. o margin: 0 auto tbm ajuda nisso.*/
+    margin: 0 auto;
+}
+
+.about .item{
+    padding: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.about .item h3{
+    font-weight: 700;
+    font-size: 4rem;
+}
+
+.about .item p{
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin: 30px 0;
+    text-align: justify;
+}
+
+.about .image{
+    height: 100%;
+    width: 100%;
+}
+
+.about .item .btn-know-more{
+    font-weight: 400;
+    font-size: 1.6rem;
+    align-self: flex-start; /*isso faz com que a área de clique permaneça apenas no conteúdo do a, não na linha inteira do elemento*/
+}
+
+.about .item .btn-know-more:hover{
+    font-weight: 700;
+}
+
+.about .image.right{
+    background:url('../images/bridge.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+.about .image.left{
+    background:url('../images/sky.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+/* ABOUT RESPONSIVO */
+@media (max-width: 425px){
+    /*alinhando os textos*/
+    .about .item{
+        text-align: center;
+    }
+
+    /*mudando o grid para o mobile, quando estiver com a tela menor, queremos  coluna e 4 linhas*/
+    .about{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+    }
+}
+
+/*SERVICES */
+.services{
+    grid-area: services;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /*duas colunas*/
+    text-align: center;
+}
+
+.services .service{
+    padding: 70px 20px;
+}
+
+.services .service img{
+    width: 250px;
+    margin-bottom: 30px;
+}
+
+.services .service h3{
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.services .service p{
+    font-size: 2rem;
+    font-weight: 400;
+    max-width: 400px;
+    margin: 20px auto 0;
+    line-height: 25px;
+}
+
+/*estilizando o primeiro elemento que tem a classe service*/
+.services .service:nth-child(1){
+    background-color: lightskyblue;
+}
+
+.services .service:nth-child(2){
+    background-color: lightpink;
+}
+
+/* VERSÃO MOBILE DE SERVICES */
+@media (max-width: 425px){
+    .services{
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+/*PROJECTS */
+.projects{
+    grid-area: projects;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /*4 colunas e 1 linha*/
+}    
+
+.projects img{
+    height: 100%;
+    transition: 0.3s;
+}
+
+.projects a:hover img{
+    opacity: 0.8;
+}
+
+/* QUEBRA NAS IMAGENS EM TABLETS - PROJECTS*/
+/* Definindo duas linhas e duas colunas */
+
+@media (max-width:768px){
+    .projects{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+/* PROJECTS MOBILE */
+@media (max-width: 425px){
+    .projects {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+    }
+}
+
+
+/*FOOTER */
+.footer{
+    grid-area: footer;
+    display: flex;
+    background-color:#f9dd6d;
+    flex-direction:column;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.footer h4{
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.footer nav{
+    margin: 50px 0;
+}
+
+.footer nav ul{
+    display: flex;
+    justify-content: center;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.footer nav ul li a{
+    font-weight: 500;
+    font-size: 2rem;
+    margin: 20px;
+    transition: 0.3s;
+}
+
+.footer nav ul li a:hover{
+    font-weight: 700;
+    color: coral;
+}
+
+.footer .social i{
+    font-size: 2.5rem;
+    transition: 0.3s;
+}
+
+.footer .social a{
+    margin: 20px;
+}
+
+.footer .social a:hover{
+    color: coral;
+}
