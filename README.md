@@ -17,8 +17,7 @@ Landing page feita como parte das atividades práticas do curso de Desenvolvimen
 - Botões de redes sociais.
 - Animações com CSS;
 
-## Resultado ✨
-<img src="./src/images/anding-page-agencia.gif" alt="Gif do layout" widht="420px" height="320px">
+
 
 
 
